@@ -2,6 +2,7 @@ import korean_font
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
 
 df = pd.read_csv(
     './data_out.csv' ,
@@ -29,3 +30,20 @@ print( "최고가", df['가격'].max())
 print( "최저가", df['가격'].min())
 print( df['연도'].value_counts())
 
+# 4. 데이터 시각화 기능
+#   1. 가격 분포 시각화
+#     가. 히스토그램 구현
+#     나. 가격대별 도서 개수 출력
+sns.histplot( df[ '가격' ] )
+plt.title('가격분포')
+plt.xlabel('가격대')
+plt.ylabel('도서 수')
+plt.legend()
+plt.show()
+
+counts, edges = np.histogram(df['가격'], bins = 5)
+plt.hist(df['가격'], bins = 5, color ='skyblue')
+plt.title('가격대별 도서 개수')
+plt.xlabel('가격')
+plt.ylabel("도서 개수")
+plt.show()
