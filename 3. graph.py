@@ -4,20 +4,10 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 df = pd.read_csv(
-    './data_out.csv' ,
+    './data_out.csv',
     header=0,
     encoding='utf-8'
 )
-
-# 쉼표(,) 제거 및 "원" 문자열 제거
-df["가격"] = df["가격"].str.replace(",", "").astype(int)
-# 출판년월 데이터 전처리
-df['출판년월'] = pd.to_datetime(df['출판년월'], format='%Y년 %m월')
-df['연도'] = df['출판년월'].dt.year
-df['월'] = df['출판년월'].dt.month
-print(df['연도'].head)
-print(df['월'].head)
-
 # 1. 가격 통계 분석
 #     가. 평균 가격 계산
 #     나. 최고 가격 계산
@@ -27,5 +17,4 @@ print(df['월'].head)
 print( "평균가", df['가격'].mean())
 print( "최고가", df['가격'].max())
 print( "최저가", df['가격'].min())
-print( df['연도'].value_counts())
-
+print( df['출판년도'].value_counts())
